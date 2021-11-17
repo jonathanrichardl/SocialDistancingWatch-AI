@@ -141,6 +141,4 @@ if __name__ == '__main__':
     filename="kelas.jpg"
     frame=cv2.imread(filename)
     image_processor.detect(frame)
-    cv2.imshow('frame',frame)
-    cv2.waitKey(0)
 
