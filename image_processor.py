@@ -25,7 +25,7 @@ class ImageProcessor():
         return center
     # fungsi distance generate distance matrix tapi dalam float
     # eg dist[1][2] isinya jarak antara titik 1 dan 2, dist[1][3] jarak antar 1 sama 3 dst
-    def distance(center, indices):
+    def distance(self,center, indices):
         """Perform distance measurement, returns a nxn eucliadean distance matrix.
         return type: 2d numpy ndarray
         Parameters
