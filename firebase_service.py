@@ -3,6 +3,7 @@ import json
 import cv2
 import firebase_admin
 import numpy as np
+import io
 from firebase_admin import storage
 from firebase_admin import credentials
 class Firebase:
@@ -14,8 +15,8 @@ class Firebase:
         self.storage = storage.bucket(app= self.firebase_service)
 
     
-    def upload(self, filestream : bytes, filename : str, folder : str = "", public : bool = False):
-        blob = self.storage.blob(f"{folder}/{filename}")
+    def upload(self, filestream : bytes, filename : str,  public : bool = False):
+        blob = self.storage.blob(filename)
         if public:
             blob.upload_from_string(filestream)
             blob.make_public()
@@ -32,8 +33,10 @@ if __name__ == '__main__':
     from image_processor import ImageProcessor
     processor = ImageProcessor()
     firebase_service = Firebase()
-    with open(f'{sys.path[0]}/kelas.jpg', 'rb') as file:
-        byte = file.read()
-    folder = 'test'
-    filename = 'oke10.jpg'
-    print(firebase_service.upload(byte, filename, folder, True))
+    with open(f'{sys.path[0]}/kelas.png', 'rb') as file:
+        byte = io.BytesIO(file.read())
+    byte.seek(0)
+    filename = 'test/test2102.jpg'
+    print(firebase_service.upload(byte.read(), filename,True))
+    cv2.imshow('ok', firebase_service.download(filename))
+    cv2.waitKey(0)
