@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "socialdistancingwatchstream",
+  "private_key_id": "295c7c8dcfe32fec113bd6698042976f90784048",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCQDmZKXs/xI3op\nKluPS51Y0T9MT+l2tFoMeSsb4kfxDOR6vkoqFHnwu1VIpdrqVRnvAFzXgjSLl+vv\nN+6lf8Xj9mjJ7tg7qJvxv9R9vS+uFOdRMpRppETR0LWnuW5f5z3agLnzsrC8otuQ\niYi8J05+zVlTzfLFbhFpoKQHnSxfrExp289zSQSnxOAMC1TjHHuyiNVKvqi4ouM0\ngtDTZDJHfNqnKa/mdq5r8Luq+QNaAEdoss5dg0pmao4RXHwK998Uei3eCRBr6u+T\nEbts2PEHd5KJx5sglZwFqG8NOxJYlqGYDgXETRg6hfSbD0QWhwkluKwoHWCL8BvV\nQ3I3t/X1AgMBAAECggEAAXQ0jTEbFUW3196en6bFeIeqHu80JCrQ7HNnn235Ls79\njY1j0O9o3w76kiBizuUoSeZKYzFw+tMZqKeUz/saNSemQ818xYNfr/QXi32Jxugp\nzbYk02xUdnxBbRpjXKWILtWh3gc/OE3Gr6Hq7ToFu74yVds/a6v/K7GZN9Ha1T9Z\nztzXDIfZZJ7CefaO/QIcJaIdz3GZ8TVTMwR5kfLRxsug4D1t0jFl0XofVTEpbdKi\nWCj1QCmOf0Z1Df84XnRfmrSe9UFWVGXSm0DdcAjETvPxivkR6dJVCd3GhxyubJHR\nIL9dtXmQUD5dg/kEiTd1bG2HhuSKMhRDPwX6mPF7uQKBgQDEburiu3V0g/Df0E83\ncbucNSKtaFCGhuH2M3kEneB3zTQGs2QVyKKc2E4SEg1XZvW3u17Uc1xRBPy3yCA9\nsL56l6J7+cw5vBzrwi8589ycNdxGO2WV+gImO/FfbuCtlkhcNX2HnJbaDBJhiSFi\nrkFLIbHDTmsbT8XjEp9w0wc5LQKBgQC7vXZeHAJsSyskRraAprE31OubD2ryLgMa\nz9F4cm/YReroPqj1KA7am+vibUkDypxs9n6uQxatM3e7wO8BgIEWC4yu+o0688kP\nLzvpriliYGF1UyhgpcFbljI3PFqcoE8LyiK1rYmffzaTRKfiDU2uHTO5woHCzI/i\nYYaGcfQc6QKBgC5WjApYdmi6B0SE+2r05XEAB+IoTXausvdFRTMVmzInsjIyd1W8\nMsAVNrWElKkdnLFu/fvYCtsB9ivUheaHnyeERcxBLTAhdCEZedKN+GjRO9lFgb1T\ncNZcJaCBo3bPkNpPtAEdq2hcmKlxk/KXcMesdya/hPy4YNIkPoB7B6UxAoGAcleb\nPwgaJbDGbsqunr5nkxSYBpGmVifV9j96WbyBCBzVTGvVZbLnERgD250p6ig9i1O5\nphLwPb7p/q0sJCMK+80++tdYqv4Nh7UB7XoIdIU09ksWfX6WvFxG60NUAK7WVdzf\ntP0jo8PMDnezNEdb916LwWiItYb3Xy58y2eeAPkCgYB2FQ/OdD0AEzCrdizCUm8p\ne58SCMCl6B5Dd2rFO1Zw/Bn9tlhYffwr+ICMYB8UOUxj6OIe9HXkwzVSa8OwxSNi\nFC8Ujl8Rh9y7Heyd9ULVUmfVF/+AIuvzF0m2VJhuysY953IKYPjGDyFbVKSywkCC\nbl7i5uBALrzS3fmrVt0J2Q==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-u7qc0@socialdistancingwatchstream.iam.gserviceaccount.com",
+  "client_id": "108419002546041491057",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-u7qc0%40socialdistancingwatchstream.iam.gserviceaccount.com"
+}

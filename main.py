@@ -1,14 +1,16 @@
 from mqtt import Mqtt
-from gdrive import Drive
+from firebase_service import Firebase
 from image_processor import ImageProcessor
+from multiprocessing import Pipe, Process
 import json
-drive = Drive()
+NUM_OF_THREADS = 3
+drive = Firebase()
 messenger = Mqtt("server", address='broker.emqx.io', port=1883)
 image_processor= ImageProcessor()
-def detect(drive_link : str) -> int:
-    frame = Drive.download(drive_link) #ini udah opencv object
-    rows, cols, channels = frame.shape
-    ImageProcessor.detect()
+
+def detect(image_link : str) -> int:
+    frame = Firebase.download(image_link) 
+    ImageProcessor.detect(frame)
     
 def process_notification(message : str):
     data = json.loads(message)
@@ -23,7 +25,6 @@ def notify_server(data : dict, total_violations : int):
         "photo_link" : data['link']
     }
     messenger.publish(json.dumps(payload), '3deef803-2854-495d-b641-677c7bda1979')
-    return
 
 
 def main():

@@ -1,11 +1,12 @@
 import cv2
 import numpy as np
+from sys import path
 EXCLUDE = 0.5
 THRESHOLD = 0.3
 NMSTHRESHOLD=0.5
 class ImageProcessor():
     def __init__(self):
-        self.tensorflow_net = cv2.dnn.readNetFromTensorflow('ssd_mobilenet_v2_coco_2018_03_29.pb', 'ssd_mobilenet_v2_coco_2018_03_29.pbtxt')
+        self.tensorflow_net = cv2.dnn.readNetFromDarknet(f"{path[0]}//yolov3.cfg",f"{path[0]}//yolov3.weights")
 
     def centroid(self,boxes, indices):
         """Detect centroid of detection boxes
@@ -25,7 +26,7 @@ class ImageProcessor():
         return center
     # fungsi distance generate distance matrix tapi dalam float
     # eg dist[1][2] isinya jarak antara titik 1 dan 2, dist[1][3] jarak antar 1 sama 3 dst
-    def distance(self,center, indices):
+    def distance(self, center, indices):
         """Perform distance measurement, returns a nxn eucliadean distance matrix.
         return type: 2d numpy ndarray
         Parameters
@@ -94,23 +95,36 @@ class ImageProcessor():
         return detected
     
     def detect(self, frame):
-        rows, cols, _ = frame.shape
-        self.tensorflow_net.setInput(cv2.dnn.blobFromImage(frame, size=(320, 320), swapRB=True, crop=False))
-        network_output = self.tensorflow_net.forward()
+        rows, cols, channels = frame.shape
+        w=cols
+        h=rows
+        # Use the given image as input, which needs to be blob(s).
+        self.tensorflow_net.setInput(cv2.dnn.blobFromImage(frame,1/255.0, size=(416, 416), swapRB=True, crop=False))
+    
+        # Runs a forward pass to compute the net output
+        
+        ln = self.tensorflow_net.getLayerNames()
+        ln = [ln[i - 1] for i in self.tensorflow_net.getUnconnectedOutLayers()]
+        networkOutput = self.tensorflow_net.forward(ln)
         boxes=[]
         confidences=[]
-        for detection in network_output[0,0]:
-            score = float(detection[2])
-            if score > THRESHOLD and int(detection[1])==1:
-            
-                left = detection[3] * cols
-                top = detection[4] * rows
-                right = detection[5] * cols
-                bottom = detection[6] * rows
-                box = [int(left),int(top),int(right-left),int(bottom-top)]
-                if(detection[5]-detection[3]<EXCLUDE):
-                    boxes.append(box)
-                    confidences.append(float(round(score,3)))
+        # Loop on the outputs
+        for output in networkOutput:
+            for detection in output:
+                scores = detection[5:]
+                classID = np.argmax(scores)
+                confidence = scores[classID]
+                if confidence > THRESHOLD and classID==0:
+                    box = detection[:4] * np.array([w, h, w, h])
+                    (centerX, centerY, width, height) = box.astype("int")
+                    x = int(centerX - (width / 2))
+                    y = int(centerY - (height / 2))
+                    box = [x, y, int(width), int(height)]
+                    if(detection[2]<EXCLUDE):
+                        boxes.append(box)
+                        confidences.append(float(round(confidence,3)))
+    
+
         indices = cv2.dnn.NMSBoxes(boxes,confidences,THRESHOLD,NMSTHRESHOLD)
         if len(indices)!=0:
             centre = self.centroid(boxes,indices)
@@ -122,7 +136,7 @@ class ImageProcessor():
 
 if __name__ == '__main__':
     image_processor = ImageProcessor()
-    filename="../trials/kelasft1.jpg"
+    filename="kelas.jpg"
     frame=cv2.imread(filename)
     image_processor.detect(frame)
 
