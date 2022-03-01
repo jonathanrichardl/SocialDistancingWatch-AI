@@ -23,7 +23,7 @@ lib/
 lib64/
 parts/
 sdist/
-firebase-config/
+firebase_config/
 var/
 wheels/
 share/python-wheels/
