@@ -3,7 +3,7 @@ import json
 import cv2
 import firebase_admin
 import numpy as np
-import io
+from time import time
 from firebase_admin import storage
 from firebase_admin import credentials
 class Firebase:
@@ -24,19 +24,7 @@ class Firebase:
         blob.upload_from_string(filestream)
         
     
-    def download(self, file):        
+    def download(self, file):
         blob = self.storage.blob(file)
         nparr = np.frombuffer(blob.download_as_bytes(), np.uint8)
         return cv2.imdecode(nparr, cv2.IMREAD_COLOR )
-
-if __name__ == '__main__':
-    from image_processor import ImageProcessor
-    processor = ImageProcessor()
-    firebase_service = Firebase()
-    with open(f'{sys.path[0]}/kelas.png', 'rb') as file:
-        byte = io.BytesIO(file.read())
-    byte.seek(0)
-    filename = 'test/test2102.jpg'
-    print(firebase_service.upload(byte.read(), filename,True))
-    cv2.imshow('ok', firebase_service.download(filename))
-    cv2.waitKey(0)
