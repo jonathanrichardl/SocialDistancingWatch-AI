@@ -84,6 +84,7 @@ eggs/
 lib/
 lib64/
 parts/
+weight/
 sdist/
 var/
 wheels/
